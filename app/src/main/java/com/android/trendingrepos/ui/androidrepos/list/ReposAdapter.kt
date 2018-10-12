@@ -27,6 +27,11 @@ class ReposAdapter(private val onRepoClick: (Repo) -> Unit) : RecyclerView.Adapt
         val inflatedView = LayoutInflater.from(parent.context).inflate(R.layout.item_repo, parent, false)
         return ViewHolder(inflatedView)
     }
+
+    fun clear() {
+        repos.clear()
+        notifyDataSetChanged()
+    }
 }
 
 class ViewHolder(v: View) : RecyclerView.ViewHolder(v) {
