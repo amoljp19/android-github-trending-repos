@@ -35,6 +35,7 @@ class TrendingAndroidReposListFragment : Fragment(), TrendingAndroidReposView {
         if (listener == null) {
             throw ClassCastException("$context must implement OnRepoSelectedListener")
         }
+        retainInstance = true
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -69,7 +70,9 @@ class TrendingAndroidReposListFragment : Fragment(), TrendingAndroidReposView {
                         ContextCompat.getColor(requireContext(), R.color.colorAccent),
                         ContextCompat.getColor(requireContext(), R.color.colorPrimaryDark)
                 )
-                setOnRefreshListener { presenter.loadRepos(false) }
+                setOnRefreshListener {
+                    listAdapter.clear()
+                    presenter.loadRepos(true) }
             }
         }
 

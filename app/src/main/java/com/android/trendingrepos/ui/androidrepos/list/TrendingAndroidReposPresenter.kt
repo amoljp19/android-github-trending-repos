@@ -44,6 +44,7 @@ class TrendingAndroidReposPresenter(private val repository: ReposRepository)
             view?.showProgress(true)
         }
         if (forceUpdate) {
+            page = 1
             repository.refreshRepos()
         }
 

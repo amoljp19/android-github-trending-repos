@@ -18,9 +18,7 @@ class MainActivity : AppCompatActivity(), TrendingAndroidReposListFragment.OnRep
 
         setContentView(R.layout.activity_main)
 
-        setupActionBar(R.id.toolbar) {
-            setDisplayHomeAsUpEnabled(false)
-        }
+        setupActionBar()
 
         if (savedInstanceState == null) {
             supportFragmentManager.findFragmentById(R.id.contentFrame)
@@ -29,9 +27,7 @@ class MainActivity : AppCompatActivity(), TrendingAndroidReposListFragment.OnRep
             }
         }
         supportFragmentManager.addOnBackStackChangedListener {
-            setupActionBar(R.id.toolbar) {
-                setDisplayHomeAsUpEnabled(supportFragmentManager.backStackEntryCount > 0)
-            }
+            setupActionBar()
         }
     }
 
@@ -50,5 +46,11 @@ class MainActivity : AppCompatActivity(), TrendingAndroidReposListFragment.OnRep
             }
         }
         return super.onOptionsItemSelected(item)
+    }
+
+    private fun setupActionBar() {
+        setupActionBar(R.id.toolbar) {
+            setDisplayHomeAsUpEnabled(supportFragmentManager.backStackEntryCount > 0)
+        }
     }
 }
